@@ -1,0 +1,36 @@
+{
+    "version": "1.0.0",
+    "name": "robuust/craft-formdesk",
+    "description": "Formdesk forms for Craft 3",
+    "type": "craft-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bob Olde Hampsink",
+            "email": "bob@robuust.digital"
+        }
+    ],
+    "extra": {
+        "handle": "formdesk",
+        "name": "Formdesk",
+        "developer": "Robuust",
+        "developerUrl": "https://robuust.digital",
+        "hasCpSettings": false,
+        "hasCpSection": false
+    },
+    "require": {
+        "php": "^8.0",
+        "craftcms/cms": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "robuust\\formdesk\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true
+        }
+    }
+}
