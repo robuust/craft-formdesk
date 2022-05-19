@@ -2,6 +2,7 @@
 
 namespace robuust\formdesk;
 
+use Craft;
 use craft\events\RegisterComponentTypesEvent;
 use craft\services\Fields;
 use robuust\formdesk\fields\Formdesk as FormdeskField;
@@ -19,6 +20,15 @@ class Plugin extends \craft\base\Plugin
     public function init()
     {
         parent::init();
+
+        $this->setComponents([
+            'formdesk' => Craft::createGuzzleClient([
+                'base_uri' => $this->settings->host,
+                'headers' => [
+                    'Authorization' => "Bearer {$this->settings->apiKey}",
+                ],
+            ]),
+        ]);
 
         // Register fieldtype
         Event::on(Fields::class, Fields::EVENT_REGISTER_FIELD_TYPES, function (RegisterComponentTypesEvent $event) {

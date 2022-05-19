@@ -10,6 +10,11 @@ use craft\base\Model;
 class Settings extends Model
 {
     /**
+     * @var string
+     */
+    public $host;
+
+    /**
      * @var int
      */
     public $apiKey;
@@ -20,7 +25,7 @@ class Settings extends Model
     public function rules()
     {
         return [
-            [['apiKey'], 'required'],
+            [['host', 'apiKey'], 'required'],
         ];
     }
 }
