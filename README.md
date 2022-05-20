@@ -30,6 +30,7 @@ Create a file called `formdesk.php` in you Craft config folder with the followin
 
 return [
     // General
+    'host' => 'YOUR_HOST',
     'apiKey' => 'YOUR_API_KEY',
 ];
 
@@ -58,7 +59,7 @@ Here is an example that renders a Formdesk form. You can change and style this e
       {% switch field.type %}
         {% case 'radio' or 'checkbox' %}
           {% for option in field.options %}
-            <input id="{{ field.id }}-{{ loop.index }}" name="{{ field.name }}{% if field.type == 'checkbox' %}[]{% endif %}" type="{{ field.type }}" {% if field.required %} required{% endif %} value="{{ option }}" /> <label for="{{ field.id }}-{{ loop.index }}">{{ option }}</label>
+            <input id="{{ field.id }}-{{ loop.index }}" name="{{ field.name }}{% if field.type == 'checkbox' %}[]{% endif %}" type="{{ field.type }}" {% if field.required %} required{% endif %} value="{{ option.value }}" /> <label for="{{ field.id }}-{{ loop.index }}">{{ option.text }}</label>
           {% endfor %}
         {% default %}
           <input id="{{ field.id }}" name="{{ field.name }}" type="{{ field.type }}" placeholder="{{ field.label }}"{% if field.required %} required{% endif %} value="{{ field.value }}" />
