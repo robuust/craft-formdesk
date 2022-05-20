@@ -88,7 +88,7 @@ class Formdesk extends Dropdown
                     'id' => $result['id'],
                     'name' => $result['identifier'],
                     'label' => $result['label'],
-                    'type' => $result['itemtype'],
+                    'type' => $this->getType($result),
                     'required' => true,
                     'value' => $result['defaultvalue'],
                     'options' => $result['options'] ?? [],
@@ -152,5 +152,25 @@ class Formdesk extends Dropdown
     public function getSettingsHtml()
     {
         return null;
+    }
+
+    /**
+     * Get type.
+     *
+     * @param array $field
+     *
+     * @return string
+     */
+    private function getType(array $field): string
+    {
+        if ($field['datatype'] == 'date') {
+            return $field['datatype'];
+        }
+
+        if ($field['itemtype'] == 'radiogroup') {
+            return 'radio';
+        }
+
+        return $field['itemtype'];
     }
 }
