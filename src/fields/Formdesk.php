@@ -133,7 +133,7 @@ class Formdesk extends Dropdown
             'id' => $this->getInputId(),
             'describedBy' => $this->describedBy,
             'name' => $this->handle,
-            'value' => null,
+            'value' => $value[0]['value'] ?? null,
             'options' => $options,
         ]);
     }
