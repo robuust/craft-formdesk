@@ -53,8 +53,7 @@ class Formdesk extends Dropdown
                     'label' => $result['name'],
                 ];
             }
-        } catch (\Exception $e) {
-            throw $e;
+        } catch (\Exception) {
         }
     }
 
