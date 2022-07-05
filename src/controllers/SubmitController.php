@@ -27,9 +27,9 @@ class SubmitController extends Controller
 
         $errors = null;
         try {
-            $result = $this->module->formdesk->post("forms/{$list}/results/?process_messages=true", [
+            $result = $this->module->formdesk->postAsync("forms/{$list}/results/?process_messages=true", [
                 'json' => array_slice($values, 1),
-            ]);
+            ])->wait();
         } catch (\Exception $e) {
             $errors = $e;
         }

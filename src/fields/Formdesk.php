@@ -63,7 +63,7 @@ class Formdesk extends Dropdown
     public function normalizeValue($value, ElementInterface $element = null)
     {
         // Get list id
-        $list = (string) parent::normalizeValue($value, $element);
+        $list = parent::normalizeValue($value, $element);
 
         try {
             $request = $this->plugin->formdesk->get("forms/{$list}/items");
@@ -72,11 +72,10 @@ class Formdesk extends Dropdown
             // Add hidden list id field
             $fields = [
                 [
-                    'id' => $list,
+                    'id' => (string) $list,
                     'name' => 'list_id',
                     'label' => Craft::t('site', 'List'),
                     'type' => 'hidden',
-                    'required' => true,
                     'value' => $list,
                     'options' => [],
                 ],
@@ -89,7 +88,6 @@ class Formdesk extends Dropdown
                     'name' => $result['identifier'],
                     'label' => $result['label'],
                     'type' => $this->getType($result),
-                    'required' => true,
                     'value' => $result['defaultvalue'],
                     'options' => $result['options'] ?? [],
                 ];
