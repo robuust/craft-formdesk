@@ -1,5 +1,5 @@
 {
-    "version": "1.0.1",
+    "version": "1.0.2",
     "name": "robuust/craft-formdesk",
     "description": "Formdesk forms for Craft 3",
     "type": "craft-plugin",

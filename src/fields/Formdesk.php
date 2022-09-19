@@ -42,18 +42,24 @@ class Formdesk extends Dropdown
         $this->plugin = Plugin::getInstance();
 
         // Get all lists
-        try {
-            $request = $this->plugin->formdesk->get('forms');
-            $results = Json::decode((string) $request->getBody());
+        $results = Craft::$app->getCache()->get('formdesk');
+        if ($results === false) {
+            try {
+                $request = $this->plugin->formdesk->get('forms');
+                $results = Json::decode((string) $request->getBody());
 
-            // Set as dropdown options
-            foreach ($results as $result) {
-                $this->options[] = [
-                    'value' => $result['id'],
-                    'label' => $result['name'],
-                ];
+                Craft::$app->getCache()->set('formdesk', $results);
+            } catch (\Exception) {
+                $results = [];
             }
-        } catch (\Exception) {
+        }
+
+        // Set as dropdown options
+        foreach ($results as $result) {
+            $this->options[] = [
+                'value' => $result['id'],
+                'label' => $result['name'],
+            ];
         }
     }
 

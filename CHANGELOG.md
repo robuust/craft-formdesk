@@ -1,3 +1,8 @@
+## 1.0.2 - 2022-09-19
+
+### Changed
+- Cache initial FormDesk list fetching
+
 ## 1.0.1 - 2022-07-05
 
 ### Changed
