@@ -35,7 +35,7 @@ class Formdesk extends Dropdown
     /**
      * {@inheritdoc}
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -66,7 +66,7 @@ class Formdesk extends Dropdown
     /**
      * {@inheritdoc}
      */
-    public function normalizeValue($value, ElementInterface $element = null)
+    public function normalizeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         // Get list id
         $list = parent::normalizeValue($value, $element);
@@ -108,7 +108,7 @@ class Formdesk extends Dropdown
     /**
      * {@inheritdoc}
      */
-    public function serializeValue($value, ElementInterface $element = null)
+    public function serializeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         if (is_array($value) && count($value)) {
             $value = $value[0]['value'];
@@ -128,7 +128,7 @@ class Formdesk extends Dropdown
     /**
      * {@inheritdoc}
      */
-    protected function inputHtml($value, ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         /** @var SingleOptionFieldData $value */
         $options = $this->translatedOptions();
@@ -153,7 +153,7 @@ class Formdesk extends Dropdown
     /**
      * {@inheritdoc}
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         return null;
     }

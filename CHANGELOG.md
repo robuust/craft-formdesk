@@ -1,3 +1,8 @@
+## 2.0.0 - 2024-07-22
+
+### Changed
+- Updated for Craft 4
+
 ## 1.0.2 - 2022-09-19
 
 ### Changed

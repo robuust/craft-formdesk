@@ -11,7 +11,10 @@ use craft\web\Response;
  */
 class SubmitController extends Controller
 {
-    public $allowAnonymous = true;
+    /**
+     * @inheritdoc
+     */
+    protected array|bool|int $allowAnonymous = true;
 
     /**
      * Submit form to Formdesk.

@@ -5,7 +5,7 @@ Plugin that allows you to display Formdesk forms
 
 ## Requirements
 
-This plugin requires Craft CMS 3.1.0 or later.
+This plugin requires Craft CMS 4.0.0 or later.
 
 ## Installation
 
