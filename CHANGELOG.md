@@ -1,3 +1,8 @@
+## 2.0.1 - 2024-07-23
+
+### Added
+- Added support for Craft 4 field status
+
 ## 2.0.0 - 2024-07-22
 
 ### Changed

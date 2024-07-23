@@ -3,7 +3,9 @@
 namespace robuust\formdesk\fields;
 
 use Craft;
+use craft\base\Element;
 use craft\base\ElementInterface;
+use craft\base\Field;
 use craft\fields\Dropdown;
 use craft\helpers\Json;
 use robuust\formdesk\Plugin;
@@ -66,6 +68,26 @@ class Formdesk extends Dropdown
     /**
      * {@inheritdoc}
      */
+    public function getStatus(ElementInterface $element): ?array
+    {
+        // If the value is invalid and has a default value (which is going to be pulled in via inputHtml()),
+        // preemptively mark the field as modified
+        /** @var SingleOptionFieldData $value */
+        $value = $element->getFieldValue($this->handle);
+
+        if (!isset($value[0]) || !$value[0]['valid'] && $this->defaultValue() !== null) {
+            return [
+                Element::ATTR_STATUS_MODIFIED,
+                Craft::t('app', 'This field has been modified.'),
+            ];
+        }
+
+        return Field::getStatus($element);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function normalizeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         // Get list id
@@ -83,6 +105,7 @@ class Formdesk extends Dropdown
                     'label' => Craft::t('site', 'List'),
                     'type' => 'hidden',
                     'value' => $list,
+                    'valid' => true,
                     'options' => [],
                 ],
             ];
@@ -95,6 +118,7 @@ class Formdesk extends Dropdown
                     'label' => $result['label'],
                     'type' => $this->getType($result),
                     'value' => $result['defaultvalue'],
+                    'valid' => true,
                     'options' => $result['options'] ?? [],
                 ];
             }
