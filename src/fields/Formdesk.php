@@ -8,6 +8,8 @@ use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\fields\Dropdown;
 use craft\helpers\Json;
+use GraphQL\Type\Definition\Type;
+use robuust\formdesk\gql\resolvers\OptionField as OptionFieldResolver;
 use robuust\formdesk\Plugin;
 
 /**
@@ -180,6 +182,18 @@ class Formdesk extends Dropdown
     public function getSettingsHtml(): ?string
     {
         return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getContentGqlType(): Type|array
+    {
+        $type = parent::getContentGqlType();
+
+        $type['resolve'] = OptionFieldResolver::class.'::resolve';
+
+        return $type;
     }
 
     /**
