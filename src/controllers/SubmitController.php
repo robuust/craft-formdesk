@@ -12,7 +12,7 @@ use craft\web\Response;
 class SubmitController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected array|bool|int $allowAnonymous = true;
 
