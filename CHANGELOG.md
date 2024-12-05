@@ -1,3 +1,8 @@
+## 2.1.1 - 2024-12-05
+
+### Changed
+- Cache list fields
+
 ## 2.1.0 - 2024-08-20
 
 ### Added

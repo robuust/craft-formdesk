@@ -96,8 +96,13 @@ class Formdesk extends Dropdown
         $list = parent::normalizeValue($value, $element);
 
         try {
-            $request = $this->plugin->formdesk->get("forms/{$list}/items");
-            $results = Json::decode((string) $request->getBody());
+            $results = Craft::$app->getCache()->get("formdesk:{$list}");
+            if ($results === false) {
+                $request = $this->plugin->formdesk->get("forms/{$list}/items");
+                $results = Json::decode((string) $request->getBody());
+
+                Craft::$app->getCache()->set("formdesk:{$list}", $results);
+            }
 
             // Add hidden list id field
             $fields = [
