@@ -159,6 +159,14 @@ class Formdesk extends Dropdown
     /**
      * {@inheritdoc}
      */
+    public function isValueEmpty(mixed $value, ElementInterface $element): bool
+    {
+        return count($value) === 0;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         /** @var SingleOptionFieldData $value */
