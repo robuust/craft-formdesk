@@ -3,9 +3,9 @@
 namespace robuust\formdesk\fields;
 
 use Craft;
-use craft\base\Element;
 use craft\base\ElementInterface;
 use craft\base\Field;
+use craft\enums\AttributeStatus;
 use craft\fields\Dropdown;
 use craft\helpers\Json;
 use GraphQL\Type\Definition\Type;
@@ -79,7 +79,7 @@ class Formdesk extends Dropdown
 
         if (!isset($value[0]) || !$value[0]['valid'] && $this->defaultValue() !== null) {
             return [
-                Element::ATTR_STATUS_MODIFIED,
+                AttributeStatus::Modified,
                 Craft::t('app', 'This field has been modified.'),
             ];
         }
@@ -167,7 +167,7 @@ class Formdesk extends Dropdown
     /**
      * {@inheritdoc}
      */
-    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element, bool $inline): string
     {
         /** @var SingleOptionFieldData $value */
         $options = $this->translatedOptions();
